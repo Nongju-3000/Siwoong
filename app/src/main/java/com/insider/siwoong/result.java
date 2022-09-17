@@ -1,14 +1,19 @@
 package com.insider.siwoong;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.activity.OnBackPressedCallback;
 
 import java.util.Objects;
 
 public class result extends Activity {
     TextView name, company, meterial, how;
+    Button backbutton;
     private String id;
 
     @Override
@@ -20,6 +25,7 @@ public class result extends Activity {
         company = findViewById(R.id.company);
         meterial = findViewById(R.id.meterial);
         how = findViewById(R.id.how);
+        backbutton = findViewById(R.id.backbutton);
 
         Intent getIntent = getIntent();
         id = getIntent.getStringExtra("id");
@@ -38,6 +44,11 @@ public class result extends Activity {
             meterial.setText("용기 - 유리 뚜껑 - 폴리에틸렌");
             how.setText("라벨을 제거하고 뚜껑은 유리 뚜껑은 플라스틱에 버려주세요");
         }
+
+        backbutton.setOnClickListener(v -> {
+            Intent intent = new Intent(result.this, MainActivity.class);
+            startActivity(intent);
+        });
 
     }
 }
